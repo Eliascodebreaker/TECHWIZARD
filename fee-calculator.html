@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Calculator - Empowering the Nation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        nav a {
+            margin: 10px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #f0a500;
+        }
+    </style>
+    <script>
+        function calculateTotalFee() {
+            const fees = {
+                'First Aid': 1500,
+                'Sewing': 1500,
+                'Landscaping': 1500,
+                'Life Skills': 1500,
+                'Child Minding': 750,
+                'Cooking': 750,
+                'Garden Maintenance': 750
+            };
+
+            let total = 0;
+            const selectedCourses = document.querySelectorAll('.course-checkbox:checked');
+            selectedCourses.forEach(course => {
+                total += fees[course.value];
+            });
+
+            const vat = total * 0.15;
+            total = total + vat;
+
+            document.getElementById('fee-result').innerText = `Total Fee (including VAT): R${total.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Fee Calculator</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <h2>Select Courses:</h2>
+    <form onsubmit="event.preventDefault(); calculateTotalFee();">
+        <label><input type="checkbox" class="course-checkbox" value="First Aid"> First Aid - R1500</label><br>
+        <label><input type="checkbox" class="course-checkbox" value="Sewing"> Sewing - R1500</label><br>
+        <label><input type="checkbox" class="course-checkbox" value="Landscaping"> Landscaping - R1500</label><br>
+        <label><input type="checkbox" class="course-checkbox" value="Life Skills"> Life Skills - R1500</label><br>
+        <label><input type="checkbox" class="course-checkbox" value="Child Minding"> Child Minding - R750</label><br>
+        <label><input type="checkbox" class="course-checkbox" value="Cooking"> Cooking - R750</label><br>
+        <label><input type="checkbox" class="course-checkbox" value="Garden Maintenance"> Garden Maintenance - R750</label><br>
+        <button type="submit">Calculate Total</button>
+    </form>
+    <div id="fee-result" style="margin-top: 20px;"></div>
+</body>
+</html>
